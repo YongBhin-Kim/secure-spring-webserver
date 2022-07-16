@@ -60,12 +60,17 @@
 - Server (ver 1.2)
 - Server (ver 1.2.2)
 
-**[통신을 위한 Server]** <br>
+**[통신을 위한 Server (Ver <= 1.2.2)]** <br>
 - 다운받은 도커 이미지를 브라우저/컨테이너 포트번호를 10000으로 열어준다.(스프링 내부 구현을 10000포트로 했습니다.)
 - 터미널에 명령어 입력 `docker run -p 10000:10000 coji68/web-server:1.1` <br>
 - 터미널에 명령어 입력 `docker run -p 10000:10000 coji68/web-server:1.2` <br>
 
-**[통신을 위한 Server (Ver > 1.2.3)]**
+**[통신을 위한 Server (Ver >= 1.2.3)]**
+
+clone한 클라이언트를 사용하려면 몇몇 설정과 명령을 수정해야 하며 windows와 macOS의 사용 방법이 다르다.<br>
+[1. (Windows만 해당) jni_md.h 파일을 다음과 같이 수정한다.] <br>
+![image](https://user-images.githubusercontent.com/98372474/174834119-74b35e3c-ad67-4c37-b539-10e1d55296b9.png)<br>
+<br>
 
 [2. java 클래스파일 생성] <br>
 - 윈도우는 기본 MS949 인코딩을 사용하므로 작업 파일의 인코딩 UTF-8로 수정하여 javac 명령을 사용한다.
@@ -104,6 +109,10 @@ gs-spring-boot-docker/initial 의 위치에서 다음 명령어 입력 <br>
 `./gradlew build && java -jar build/libs/initial-0.0.1-SNAPSHOT.jar ` <br>
 <br>
 
+[전체 과정 (MacOS)] <br>
+<img width="1430" alt="image" src="https://user-images.githubusercontent.com/98372474/179349857-ea27d879-a072-4fdb-8eae-58b1fb243e37.png"> <br>
+
+
 
 **[통신을 위한 Client]** <br>
 
@@ -128,7 +137,7 @@ Windows : `javac Client.java -h . -encoding UTF-8` <br>
 [4. 라이브러리 컴파일] <br>
 macOS : `gcc -I”/[JDK 경로]/Contents/Home/include" -I”/[JDK 경로]/Contents/Home/include/darwin" -o libBlockCipher.jnilib -shared Client.c` <br>
 (예시) : 
-`$ gcc -I"/Users/kim-yongbhin/Desktop/jdk-17.0.1.jdk/Contents/Home/include" -I"/Users/kim-yongbhin/Desktop/jdk-17.0.1.jdk/Contents/Home/include/darwin" -o libBlockCipher_AES.jnilib -shared hello/Server.c` <br>
+`$ gcc -I"/Users/kim-yongbhin/Desktop/jdk-17.0.1.jdk/Contents/Home/include" -I"/Users/kim-yongbhin/Desktop/jdk-17.0.1.jdk/Contents/Home/include/darwin" -o libBlockCipher_AES.jnilib -shared Client.c` <br>
 
 Windows : 내pc 우클릭 -> 속성 -> 관련설정 -> 고급 시스템 설정 -> 환경 변수 -> 시스템 변수 -> CLASSPATH의 변수값을 `%JAVA_HOME%\lib;.` 으로 설정 <br>
 Windows : `gcc -I"[jdk경로]/include" -I"[jdk경로]/include/win32" -o libBlockCipher.jnilib -shared Client.c` <br>
@@ -136,14 +145,21 @@ Windows : `gcc -I"[jdk경로]/include" -I"[jdk경로]/include/win32" -o libBlock
 
 [5. 라이브러리 경로 가져오기] <br>
 macOS : `java -Djava.library.path=. Client` <br>
-(예시) : `$ java -Djava.library.path=/Users/kim-yongbhin/Desktop/Docker/StartDocker2/WebServer/gs-spring-boot-docker/initial/src/main/java/libBlockCipher_AES.jnilib hello/Server` <br>
 
 Windows : `java -Djava.library.path=[라이브러리(libBlockCipher.jnilib) 절대경로] Client` <br>
+(예시) : `$ java -Djava.library.path=/Users/kim-yongbhin/Desktop/Docker/StartDocker2/WebServer/Client/libBlockCipher_AES.jnilib Client` <br>
+
 <br>
 
 [6. (공통)클라이언트 컴파일] <br>
 Client.java 파일이 존재하는 폴더 내에서 명령어 입력 <br>
 `java Client.java` <br>
+
+[전체 과정(MacOS)] <br>
+<img width="1092" alt="image" src="https://user-images.githubusercontent.com/98372474/179350049-78a3e392-ff77-409b-9cf7-9901ad73e843.png"> <br>
+
+
+
 <br>
 -----------------------------------------<br>
 <br>
@@ -157,9 +173,11 @@ Client.java 파일이 존재하는 폴더 내에서 명령어 입력 <br>
 - Server - Client로부터 전달받은 'message'를 Client에게 재전송
 - Client - From Server : 'message' 서버로부터 재전송받은 메시지를 standard output(모니터)으로 출력
 
-**다음과 같이 Server-Client가 통신이 가능하다.(위쪽 : Server / 아래쪽 : Client)** <br>
+**(Ver <= 1.2.2)다음과 같이 Server-Client가 통신이 가능하다.(위쪽 : Server / 아래쪽 : Client)** <br>
 - ver 1.1
 <img width="1429" alt="image" src="https://user-images.githubusercontent.com/98372474/167178601-d1e7a872-c7f9-4681-8b37-e68ef0f0b977.png"><br><br>
+
+**(Ver <= 1.2.3)다음과 같이 Server-Client가 통신이 가능하다.(위쪽 : Server / 아래쪽 : Client)** <br>
 
 <br><br><br>
   
