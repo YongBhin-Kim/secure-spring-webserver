@@ -112,7 +112,10 @@ gs-spring-boot-docker/initial 의 위치에서 다음 명령어 입력 <br>
 [전체 과정 (MacOS)] <br>
 <img width="1430" alt="image" src="https://user-images.githubusercontent.com/98372474/179349857-ea27d879-a072-4fdb-8eae-58b1fb243e37.png"> <br>
 
+- load library까지 정상적으로 완료한다면 다음과 같은 메시지가 출력됩니다. <br>
 
+<img width="1437" alt="image" src="https://user-images.githubusercontent.com/98372474/179350702-647c6b8e-e1a8-42bf-ba0b-dfec52083252.png"> <br>
+<br>
 
 **[통신을 위한 Client]** <br>
 
