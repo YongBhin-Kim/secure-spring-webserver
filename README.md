@@ -20,9 +20,11 @@
 - - Client : `git clone https://github.com/YongBhin-Kim/WebServer.git`
 - - Docker Image(Client) : x (로컬 실행)
 - ver1.2.1 : 
-- - Docker Image(Server) 최적화 테스트 단계 (오류 수정 완료)
+- - Docker Image(Server) 최적화 테스트 단계
 - ver1.2.2 : 
-- - Docker Image(Server) : `docker pull coji68/web-server:1.2.2` (22-07-01 업데이트, 도커 이미지 파일 인식 오류)
+- - Docker Image(Server) : `docker pull coji68/web-server:1.2.2` (22-07-01 업데이트)
+- ver1.2.3 : 블록암호 AES를 적용한 서버/클라이언트 (최종), 서버/클라이언트 모두 설정 필요
+- - Server/Client : `git clone https://github.com/YongBhin-Kim/SpringWebServer.git` (22-07-16 업데이트)
 <br><br><br>
 
 
@@ -44,7 +46,9 @@
  ver1.0 : `docker run -p 8080:8080 -t coji68/web-server:1.0` <br>
  ver1.1 : `docker run -p 10000:10000 -t coji68/web-server:1.1` <br>
  ver1.2 : `docker run -p 10000:10000 -t coji68/web-server:1.2` <br>
- ver1.2.x : `docker run -p 8080:8080 -t coji68/web-server:1.2.x` <br>
+ ver1.2.1 : `docker run -p 8080:8080 -t coji68/web-server:1.2.x` <br>
+ ver1.2.2 : `docker run -p 8080:8080 -t coji68/web-server:1.2.x` <br>
+ ver1.2.3은 git clone으로 진행<br>
  <br><br>
 
 - 명령어 실행 결과 Spring이 정상 작동<br>
