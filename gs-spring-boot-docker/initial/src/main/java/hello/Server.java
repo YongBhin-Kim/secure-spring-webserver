@@ -4,11 +4,10 @@ package hello;
 // @RestController
 public class Server {
     public static void main(String[] args) {
-        System.out.println("Hello World Server_mainFunct\n");
+        System.out.println("[Server] : success load library \n");
     }
     public static int[] stringToInt(String s) {
         int[] result = new int[128];
-        System.out.println(s.length());
     
         for (int i = 0; i < s.length(); i++) {
             result[i] = (int) s.charAt(i);
@@ -25,7 +24,6 @@ public class Server {
     public static String JNIFunct_Enc(String receivedSentence) throws Exception { // parameter int len 추가
 
         int[] PT = stringToInt(receivedSentence);
-        System.out.println("\n(Server.java) : 암호화\n");
         Server h = new Server();
         int[] out = h.Enc(PT);
         StringBuilder inttoSB = new StringBuilder();
@@ -59,15 +57,31 @@ public class Server {
             inttoStr.append((char) out2[i]);                // [char] [char] [char] [char]
         }
         String tmp = inttoStr.toString();                   // "char char char char" 
-        System.out.println("(Server.java) : [복호화]\n" + tmp);
-        // tmp += " 400 OK";
+        System.out.println("[복호화]\n" + tmp);
         return tmp;
     }
     static {
-        // System.loadLibrary("BlockCipher");
-        // System.loadLibrary("BlockCipher_AES");
-        // System.load("/StartDocker/gs-spring-boot-docker/initial/src/main/java/libBlockCipher.jnilib");
+        // ===========================================================================================================================
+        // (Ver <= 1.2.2) : 간단한 블록암호 --> https://github.com/YongBhin-Kim/SpringWebServer/blob/master/README.md 에서 자세한 설정방법 확인
+
+        // [macOS]
         // System.load("/Users/kim-yongbhin/Desktop/Docker/StartDocker2/gs-spring-boot-docker/initial/src/main/java/libBlockCipher.jnilib");
+
+        // [Windows]
+        // System.load("~WebServer/gs-spring-docker/initial/src/main/java/libBlockCipher.jnilib");
+
+        // ===========================================================================================================================
+
+
+
+        // ===========================================================================================================================
+        // (Ver 1.2.3) : 블록암호 AES --> https://github.com/YongBhin-Kim/SpringWebServer/blob/master/README.md 에서 자세한 설정방법 확인
+
+        // [macOS]
         System.load("/Users/kim-yongbhin/Desktop/Docker/StartDocker2/WebServer/gs-spring-boot-docker/initial/src/main/java/libBlockCipher_AES.jnilib");
+
+        // [Windows]
+        // System.load("~WebServer/gs-spring-docker/initial/src/main/java/libBlockCipher_AES.jnilib"); <--- 이 부분 수정 필요
+        // ===========================================================================================================================
     }
 }
