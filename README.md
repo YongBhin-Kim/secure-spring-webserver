@@ -98,7 +98,8 @@ Windows : `javac Server.java -h . -encoding UTF-8` <br>
 <br>
 
 [4. 라이브러리 컴파일] <br>
-`gs-spring-boot-docker/initial/src/main/java` 의 위치에서 아래의 명령어 입력<br>
+`gs-spring-boot-docker/initial/src/main/java` 의 위치에서 아래의 명령어 입력 <br>
+
 macOS : `gcc -I”/[JDK 경로]/Contents/Home/include" -I”/[JDK 경로]/Contents/Home/include/darwin" -o libBlockCipher_AES.jnilib -shared hello/Server.c` <br>
 (예시) : `$ gcc -I"/Users/kim-yongbhin/Desktop/jdk-17.0.1.jdk/Contents/Home/include" -I"/Users/kim-yongbhin/Desktop/jdk-17.0.1.jdk/Contents/Home/include/darwin" -o libBlockCipher_AES.jnilib -shared hello/Server.c` <br>
 
