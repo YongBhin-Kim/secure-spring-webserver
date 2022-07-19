@@ -63,6 +63,7 @@
 - Server (ver 1.1)
 - Server (ver 1.2)
 - Server (ver 1.2.2)
+- Server (ver 1.2.3)
 
 **[통신을 위한 Server (Ver <= 1.2.2)]** <br>
 - 다운받은 도커 이미지를 브라우저/컨테이너 포트번호를 10000으로 열어준다.(스프링 내부 구현을 10000포트로 했습니다.)
@@ -71,10 +72,15 @@
 
 **[통신을 위한 Server (Ver >= 1.2.3)]**
 
-clone한 클라이언트를 사용하려면 몇몇 설정과 명령을 수정해야 하며 windows와 macOS의 사용 방법이 다르다.<br>
-[1. (Windows만 해당) jni_md.h 파일을 다음과 같이 수정한다.] <br>
+[1. Windwos만 해당 - 환경 설정] <br>
+clone한 서버를 사용하려면 몇몇 설정과 명령을 수정해야 하며 windows와 macOS의 사용 방법이 다르다.<br>
+- jni_md.h 파일을 다음과 같이 수정 <br>
 ![image](https://user-images.githubusercontent.com/98372474/174834119-74b35e3c-ad67-4c37-b539-10e1d55296b9.png)<br>
 <br>
+
+- clone한 폴더/gs-spring-boot-docker/initial/src/main/java/hello/Server.java 파일에서 [Windwos] System.load()의 경로를 자신의 경로에 맞게끔 설정
+<img width="894" alt="image" src="https://user-images.githubusercontent.com/98372474/179656749-465e74df-bf8a-49cc-8c7b-3aa1a1375e95.png">
+
 
 [2. java 클래스파일 생성] <br>
 - 윈도우는 기본 MS949 인코딩을 사용하므로 작업 파일의 인코딩 UTF-8로 수정하여 javac 명령을 사용한다.
@@ -122,12 +128,18 @@ gs-spring-boot-docker/initial 의 위치에서 다음 명령어 입력 <br>
 <br>
 
 **[통신을 위한 Client]** <br>
-
+[1. Windwos만 해당 - 환경 설정] <br>
 clone한 클라이언트를 사용하려면 몇몇 설정과 명령을 수정해야 하며 windows와 macOS의 사용 방법이 다르다.<br>
-[1. (Windows만 해당) jni_md.h 파일을 다음과 같이 수정한다.] <br>
+- jni_md.h 파일을 다음과 같이 수정(Server에서 수정하였다면 이 부분은 패스) <br>
 
 ![image](https://user-images.githubusercontent.com/98372474/174834119-74b35e3c-ad67-4c37-b539-10e1d55296b9.png)<br>
 <br>
+
+- clone한 폴더/Client/Client.java 파일에서 [Windwos] System.load()의 경로를 자신의 경로에 맞게끔 설정
+
+<img width="806" alt="image" src="https://user-images.githubusercontent.com/98372474/179655536-9b0dbc58-b332-4022-8349-85df8ae388b2.png"> <br>
+<br>
+
 
 [2. java 클래스파일 생성] <br>
 - 윈도우는 기본 MS949 인코딩을 사용하므로 작업 파일의 인코딩 UTF-8로 수정하여 javac 명령을 사용한다.
@@ -171,8 +183,13 @@ Client.java 파일이 존재하는 폴더 내에서 명령어 입력 <br>
 -----------------------------------------<br>
 <br>
 
-**다음과 같이 Server-Client가 통신이 가능하다.(위쪽 : Server / 아래쪽 : Client)** <br>
-(예시 - 통신의 순서)
+<h2>[2. Server-Client 통신] </h2> <br>
+
+
+<h3>[1. Server-Client 통신 (Ver <= 1.2.2)]</h3> <br>
+
+(통신 순서 예시) <br>
+
 - Server - 포트번호 10000으로 서버를 열고 클라이언트의 접속을 기다린다.
 - Client - 포트번호 10000으로 접속을 요청한다.
 - Server-Client 연결 완료
@@ -180,15 +197,20 @@ Client.java 파일이 존재하는 폴더 내에서 명령어 입력 <br>
 - Server - Client로부터 전달받은 'message'를 Client에게 재전송
 - Client - From Server : 'message' 서버로부터 재전송받은 메시지를 standard output(모니터)으로 출력
 
-**(Ver <= 1.2.2)다음과 같이 Server-Client가 통신이 가능하다.(위쪽 : Server / 아래쪽 : Client)** <br>
-- ver 1.1
+**다음과 같이 Server-Client가 통신이 가능하다.(위쪽 : Server / 아래쪽 : Client)** <br>
 <img width="1429" alt="image" src="https://user-images.githubusercontent.com/98372474/167178601-d1e7a872-c7f9-4681-8b37-e68ef0f0b977.png"><br><br>
 
-**(Ver <= 1.2.3)다음과 같이 Server-Client가 통신이 가능하다.(위쪽 : Server / 아래쪽 : Client)** <br>
+
+- ver 1.2.2
+<img width="1436" alt="image" src="https://user-images.githubusercontent.com/98372474/176786776-1e5df1e4-6aac-4f9c-addc-639da4226cb0.png"><br><br>
+
+<img width="1429" alt="image" src="https://user-images.githubusercontent.com/98372474/167178601-d1e7a872-c7f9-4681-8b37-e68ef0f0b977.png"><br><br>
+
+
 
 <br><br><br>
   
-<h3>[2. JNI를 이용한 암/복호화가 추가된 Server-Client 통신 (for ver1.2)] </h3><br>
+<h3>[2. JNI를 이용한 암/복호화가 추가된 Server-Client 통신 (Ver1.2.3)] </h3><br>
 
 **[JNI를 이용하여 ver1.1 위에 C language 블록암호 암호화/복호화 과정을 추가한다.]** <br>
 
@@ -219,11 +241,6 @@ Client.java 파일이 존재하는 폴더 내에서 명령어 입력 <br>
 
 <img width="841" alt="image" src="https://user-images.githubusercontent.com/98372474/174623887-fb366591-93a6-4883-af1a-8fa23dbd034b.png"> <br>
 <br>
-
-- ver 1.2.2
-<img width="1436" alt="image" src="https://user-images.githubusercontent.com/98372474/176786776-1e5df1e4-6aac-4f9c-addc-639da4226cb0.png"><br><br>
-
-<img width="1429" alt="image" src="https://user-images.githubusercontent.com/98372474/167178601-d1e7a872-c7f9-4681-8b37-e68ef0f0b977.png"><br><br>
 
 
 ------------------------------------------------------------------------------------------------------------------------------
