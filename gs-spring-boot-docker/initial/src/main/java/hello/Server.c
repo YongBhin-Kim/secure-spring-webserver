@@ -12,12 +12,8 @@ JNIEXPORT jintArray JNICALL Java_hello_Server_Enc(JNIEnv *env, jobject jobj, jin
     int size, i;
     jintArray out;
     unsigned char key[] = {0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x16, 0x47, 0x77, 0x11, 0x1e, 0x3c};
-    unsigned char EncBuff[80];
-    // unsigned char DecBuff[80];
-    // int intkey[10];
-    // for (int i = 0; i < 10; i++) {
-        // intkey[i] = key[i];
-    // }
+    // unsigned char EncBuff[80];
+    unsigned char EncBuff[128];
     
     out = (*env)->NewIntArray(env, 128);
     size = (*env)->GetArrayLength(env, arr2);
@@ -40,13 +36,10 @@ JNIEXPORT jintArray JNICALL Java_hello_Server_Enc(JNIEnv *env, jobject jobj, jin
     printState_AES(tmp);
 
     // Enc(tmp, intkey);
-    AES_ECB_Encrypt(tmp, key, EncBuff, 16);
+    AES_ECB_Encrypt(tmp, key, EncBuff, 128);
     printf("[암호화(hex)] \n");
     // printState(tmp);
     printState_AES(EncBuff);
-    // for (int i = 0; i < 128; i++) {
-    //     printf("%d", byteBuf[i]);
-    // }
     for (int i=0; i<128; i++) {
         tmp2[i] = (int)EncBuff[i];
     }
@@ -63,7 +56,8 @@ JNIEXPORT jintArray JNICALL Java_hello_Server_Dec(JNIEnv *env, jobject jobj, jin
     jint *byteBuf;
     int size, i;
     jintArray out;
-    unsigned char DecBuff[80];
+    // unsigned char DecBuff[80];
+    unsigned char DecBuff[128];
     // char key[] = "mykeymykey";
     unsigned char key[] = {0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x16, 0x47, 0x77, 0x11, 0x1e, 0x3c};
     // int intkey[10];
@@ -82,7 +76,9 @@ JNIEXPORT jintArray JNICALL Java_hello_Server_Dec(JNIEnv *env, jobject jobj, jin
         // printf("%d ", tmp[i]);
     }
     // Dec(tmp, intkey);
-    AES_ECB_Decrypt(tmp, key, DecBuff, 16);
+    AES_ECB_Decrypt(tmp, key, DecBuff, 128);
+
+
     printf("[복호화(hex)]\n");
     // printState(tmp);
     printState_AES(DecBuff);
