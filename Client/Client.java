@@ -74,7 +74,7 @@ class Client {
         System.loadLibrary("BlockCipher_AES");
 
         // [Windows]
-        // System.load("~WebServer/Client/libBlockCipher_AES.jnilib"); <--- 이 부분 수정 필요
+        // System.load("~WebServer/Client/libBlockCipher_AES.jnilib"); <--- 이 부분 수정 필요 
         // ===========================================================================================================================
     }
 } 
