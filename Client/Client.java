@@ -34,6 +34,7 @@ class Client {
         DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream()); 
         outToServer.writeBytes(clientSentence + "\n");      // send encrypted input string to server
 
+        System.out.println("[Client] : Sending an encrypted message to server.");
         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream())); 
         String receivedSentence = inFromServer.readLine();  // received encrypted string sentence from server
         String[] CT = receivedSentence.split(" ");   // ["val"] ["val"] ["val"] ["val"]
@@ -53,9 +54,28 @@ class Client {
         System.out.println("[복호화]\n" + tmp);              
         clientSocket.close(); 
     } 
+
     static {
+        // ===========================================================================================================================
+        // (Ver <= 1.2.2) : 간단한 블록암호 --> https://github.com/YongBhin-Kim/SpringWebServer/blob/master/README.md 에서 자세한 설정방법 확인
+        
+        // [macOS]
         // System.loadLibrary("BlockCipher");
+
+        // [Windows]
+        // System.load("C:/SpringServer/Client/libBlockCipher.jnilib");
+        // ===========================================================================================================================
+        
+
+        // ===========================================================================================================================
+        // (Ver 1.2.3) : 블록암호 AES --> https://github.com/YongBhin-Kim/SpringWebServer/blob/master/README.md 에서 자세한 설정방법 확인
+        
+        // [macOS]
         System.loadLibrary("BlockCipher_AES");
+
+        // [Windows]
+        // System.load("~WebServer/Client/libBlockCipher_AES.jnilib"); <--- 이 부분 수정 필요
+        // ===========================================================================================================================
     }
 } 
 
