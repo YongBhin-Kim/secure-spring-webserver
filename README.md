@@ -1,5 +1,8 @@
 <h2>(국민대학교 학부연구생) SpringBoot Client-to-Server 암/복호화 통신 - Java Native Interface </h2>
 
+***현재 올라와 있는 버전은 1.2.3(서버/클라이언트 암/복호) 입니다.*** <br>
+***Ver1.2.2 이전의 서버는 Docker hub에 올라가있습니다.*** <br>
+
 **[Docker image Environment]**
 - Docker image
 - Language : Java, C
@@ -74,7 +77,7 @@
 
 [1. Windwos만 해당 - 환경 설정] <br>
 clone한 서버를 사용하려면 몇몇 설정과 명령을 수정해야 하며 windows와 macOS의 사용 방법이 다르다.<br>
-- jni_md.h 파일을 다음과 같이 수정 <br>
+- `jni_md.h` 파일을 다음과 같이 수정 <br>
 ![image](https://user-images.githubusercontent.com/98372474/174834119-74b35e3c-ad67-4c37-b539-10e1d55296b9.png)<br>
 <br>
 
@@ -87,14 +90,15 @@ clone한 서버를 사용하려면 몇몇 설정과 명령을 수정해야 하�
 - minGW터미널을 사용하면 아래의 모든 window 명령에서 UTF-8 인코딩을 해줄 필요가 없다.
 
 Server.java가 있는 경로(`gs-spring-boot-docker/initial/src/main/java/hello/`)에서 다음 명령어 입력 <br>
-macOS : javac Server.java <br>
-Windows : javac Server.java -encoding UTF-8 <br>
+macOS : `javac Server.java` <br>
+Windows : `javac Server.java -encoding UTF-8` <br>
 <br>
 
 [3. 헤더 재생성] <br>
 Server.java가 있는 경로(`gs-spring-boot-docker/initial/src/main/java/hello/`)에서 다음 명령어 입력 <br>
 macOS : `javac Server.java -h .` <br>
 Windows : `javac Server.java -h . -encoding UTF-8` <br>
+(예시) : `gcc -I"/c/Program Files/Java/jdk-18/include" -I"/c/Program Files/Java/jdk-18/include/win32" -o libBlockCipher_AES.jnilib -shared hello/Server.c` <br>
 <br>
 
 [4. 라이브러리 컴파일] <br>
@@ -102,17 +106,20 @@ Windows : `javac Server.java -h . -encoding UTF-8` <br>
 
 macOS : `gcc -I”/[JDK 경로]/Contents/Home/include" -I”/[JDK 경로]/Contents/Home/include/darwin" -o libBlockCipher_AES.jnilib -shared hello/Server.c` <br>
 (예시) : `$ gcc -I"/Users/kim-yongbhin/Desktop/jdk-17.0.1.jdk/Contents/Home/include" -I"/Users/kim-yongbhin/Desktop/jdk-17.0.1.jdk/Contents/Home/include/darwin" -o libBlockCipher_AES.jnilib -shared hello/Server.c` <br>
-
+<br>
 Windows : 내pc 우클릭 -> 속성 -> 관련설정 -> 고급 시스템 설정 -> 환경 변수 -> 시스템 변수 -> CLASSPATH의 변수값을 `%JAVA_HOME%\lib;.` 으로 설정 <br>
 Windows : `gcc -I"[jdk경로]/include" -I"[jdk경로]/include/win32" -o libBlockCipher_AES.jnilib -shared hello/Server.c` <br>
+(예시) : `gcc -I"/c/Program Files/Java/jdk-18/include" -I"/c/Program Files/Java/jdk-18/include/win32" -o libBlockCipher_AES.jnilib -shared hello/Server.c`<br>
+
 <br>
 
 [5. 라이브러리 경로 가져오기] <br>
 `gs-spring-boot-docker/initial/src/main/java` 의 위치에서 아래의 명령어 입력<br>
 macOS : `java -Djava.library.path=[라이브러리(libBlockCipher_AES.jnilib) 절대경로] hello/Server` <br>
 (예시) : `$ java -Djava.library.path=/Users/kim-yongbhin/Desktop/Docker/StartDocker2/WebServer/gs-spring-boot-docker/initial/src/main/java/libBlockCipher_AES.jnilib hello/Server` <br>
-
+<br>
 Windows : `java -Djava.library.path=[라이브러리(libBlockCipher_AES.jnilib) 절대경로] hello/Server` <br>
+(예시) : `java -Djava.library.path=/c/Users/user/workspace/SpringWebServer/gs-spring-boot-docker/initial/src/main/java/libBlockCipher_AES.jnilib hello/Server`<br>
 <br>
 
 [6. (공통)서버 컴파일] <br>
@@ -158,16 +165,18 @@ Windows : `javac Client.java -h . -encoding UTF-8` <br>
 macOS : `gcc -I”/[JDK 경로]/Contents/Home/include" -I”/[JDK 경로]/Contents/Home/include/darwin" -o libBlockCipher.jnilib -shared Client.c` <br>
 (예시) : 
 `$ gcc -I"/Users/kim-yongbhin/Desktop/jdk-17.0.1.jdk/Contents/Home/include" -I"/Users/kim-yongbhin/Desktop/jdk-17.0.1.jdk/Contents/Home/include/darwin" -o libBlockCipher_AES.jnilib -shared Client.c` <br>
-
+<br>
 Windows : 내pc 우클릭 -> 속성 -> 관련설정 -> 고급 시스템 설정 -> 환경 변수 -> 시스템 변수 -> CLASSPATH의 변수값을 `%JAVA_HOME%\lib;.` 으로 설정 <br>
 Windows : `gcc -I"[jdk경로]/include" -I"[jdk경로]/include/win32" -o libBlockCipher.jnilib -shared Client.c` <br>
+(예시) : `gcc -I"/c/Program Files/Java/jdk-18/include" -I"/c/Program Files/Java/jdk-18/include/win32" -o libBlockCipher_AES.jnilib -shared Client.c` <br>
 <br>
 
 [5. 라이브러리 경로 가져오기] <br>
 macOS : `java -Djava.library.path=. Client` <br>
-
-Windows : `java -Djava.library.path=[라이브러리(libBlockCipher.jnilib) 절대경로] Client` <br>
 (예시) : `$ java -Djava.library.path=/Users/kim-yongbhin/Desktop/Docker/StartDocker2/WebServer/Client/libBlockCipher_AES.jnilib Client` <br>
+<br>
+Windows : `java -Djava.library.path=[라이브러리(libBlockCipher.jnilib) 절대경로] Client` <br>
+(예시) : `java -Djava.library.path=/c/Users/user/workspace/SpringWebServer/Client/libBlockCipher_AES.jnilib Client` <br>
 
 <br>
 
@@ -226,18 +235,18 @@ Client.java 파일이 존재하는 폴더 내에서 명령어 입력 <br>
 **[JNI를 이용하여 ver1.1 위에 C language 블록암호 암호화/복호화 과정을 추가한다.]** <br>
 
 - (Client) - jni 이용을 선언한다.
-- (C) - 입력받은 메시지를 블록암호를 이용하여 암호화한 후 Client로 넘긴다.
+- (C) - 입력받은 메시지를 블록암호로 암호화한 후 Client로 넘긴다.
 - (Client) - Server로 암호문을 전송한다.
 - (Server) - jni를 이용하여 Client로부터 받은 암호문을 C로 넘긴다.
-- (C) - Server로부터 받은 암호문을 블록암호를 이용하여 복호화한 후 복호문(= 평문)을 Server로 넘긴다.
-- (Server) - Client로부터 받은(C로 복호화한) 평문을 확인한다.
+- (C) - Server로부터 받은 암호문을 블록암호로 복호화한 후 복호문(= 평문)을 Server로 넘긴다.
+- (Server) - Client로부터 받은(C 블록암호로 복호화한) 평문을 확인한다.
 
 - (Server) - jni 이용을 선언한다. 
-- (C) - 입력받은 메시지를 블록암호를 이용하여 암호화한 후 Server로 넘긴다.
+- (C) - 입력받은 메시지를 블록암호로 암호화한 후 Server로 넘긴다.
 - (Server) - Client로 암호문을 전송한다.
 - (Client) - jni를 이용하여 Server로부터 받은 암호문을 C로 넘긴다.
-- (C) - Client로부터 받은 암호문을 블록암호를 이용하여 복호화한 후 복호문(= 평문)을 Client로 넘긴다.
-- (Client) - Server로부터 받은(C로 복호화한) 평문을 확인한다.
+- (C) - Client로부터 받은 암호문을 블록암호로 복호화한 후 복호문(= 평문)을 Client로 넘긴다.
+- (Client) - Server로부터 받은(C 블록암호로 복호화한) 평문을 확인한다.
 
 - Client 암/복호화 구현 및 서버와의 통신 구현 기능 구현
 - ASCII에 속한 모든 문자 구현
