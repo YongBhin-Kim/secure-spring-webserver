@@ -198,6 +198,16 @@ Client.java 파일이 존재하는 폴더 내에서 명령어 입력 <br>
 - Server - Client로부터 전달받은 'message'를 Client에게 재전송
 - Client - From Server : 'message' 서버로부터 재전송받은 메시지를 standard output(모니터)으로 출력
 
+**[Server]**
+
+<img width="714" alt="image" src="https://user-images.githubusercontent.com/98372474/174623814-4b2e4f7a-ebed-46dd-ae15-f7071f108c78.png"> <br>
+
+**[Client]**
+
+<img width="841" alt="image" src="https://user-images.githubusercontent.com/98372474/174623887-fb366591-93a6-4883-af1a-8fa23dbd034b.png"> <br>
+<br>
+
+
 **다음과 같이 Server-Client가 통신이 가능하다.(위쪽 : Server / 아래쪽 : Client)** <br>
 <img width="1429" alt="image" src="https://user-images.githubusercontent.com/98372474/167178601-d1e7a872-c7f9-4681-8b37-e68ef0f0b977.png"><br><br>
 
@@ -234,14 +244,13 @@ Client.java 파일이 존재하는 폴더 내에서 명령어 입력 <br>
 - Server 암/복호화 구현 (진행중 - 서버에서는 의존성을 수정해야 한다.) ###
 
 **다음과 같이 Server-Client가 JNI를 이용하여 암/복호화된 통신이 가능하다.** <br>
-**[Server]**
 
-<img width="714" alt="image" src="https://user-images.githubusercontent.com/98372474/174623814-4b2e4f7a-ebed-46dd-ae15-f7071f108c78.png"> <br>
+<img width="1436" alt="image" src="https://user-images.githubusercontent.com/98372474/179672155-708de225-31c9-432b-a0ef-8e0ced32d8a2.png"> <br>
 
-**[Client]**
+<img width="1439" alt="image" src="https://user-images.githubusercontent.com/98372474/179672189-8e546535-3ab1-4fc1-a6ce-b327937fa0b5.png"> <br>
 
-<img width="841" alt="image" src="https://user-images.githubusercontent.com/98372474/174623887-fb366591-93a6-4883-af1a-8fa23dbd034b.png"> <br>
-<br>
+<img width="1439" alt="image" src="https://user-images.githubusercontent.com/98372474/179672220-bb396451-28e8-4239-96b9-dc29e624b240.png"> <br>
+
 
 
 ------------------------------------------------------------------------------------------------------------------------------
