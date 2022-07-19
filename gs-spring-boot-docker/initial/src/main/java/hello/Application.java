@@ -19,13 +19,13 @@ public class Application {
 
 	public static void main(String[] args) throws Exception{
 		SpringApplication.run(Application.class, args);
-		System.out.println("Hello World!\n");
+		System.out.println("[Server Start]\n");
 		String clientSentence, serverSentence; 
 		ServerSocket welcomeSocket = new ServerSocket(10000);
 
 		while(true){
 			Socket connectionSocket = welcomeSocket.accept(); 
-			System.out.println("client-server 연결완료\n");
+			System.out.println("[client-server connected]\n");
 			BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream())); 
 			DataOutputStream  outToClient = 
 			new DataOutputStream(connectionSocket.getOutputStream()); 
@@ -39,6 +39,7 @@ public class Application {
 			// 보낼 serverSentence를 암호화 (serverSentence를 blockCipherLib.c 로 넘겨서 암호화한 후 Client로 보낸다.)
 			//===============================================
 			outToClient.writeBytes(serverSentence + '\n'); 
+			System.out.println("[Server] : Sending an encrypted message to client.");
 		}
 	}
 
