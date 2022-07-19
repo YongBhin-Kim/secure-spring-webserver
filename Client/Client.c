@@ -2,7 +2,7 @@
 #include "Client.h"
 #include <stdio.h>
 // #include "../blockCipher/blockCipherLib.h"
-#include "../blockCipher/simpleCipherLib.h"
+// #include "../blockCipher/simpleCipherLib.h"
 #include "../blockCipher/aesLib.h"
 
 JNIEXPORT jintArray JNICALL Java_Client_Enc(JNIEnv *env, jobject jobj, jintArray arr2)
@@ -11,7 +11,8 @@ JNIEXPORT jintArray JNICALL Java_Client_Enc(JNIEnv *env, jobject jobj, jintArray
     int size, i;
     jintArray out;
     unsigned char key[] = {0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x16, 0x47, 0x77, 0x11, 0x1e, 0x3c};
-    unsigned char EncBuff[80];
+    // unsigned char EncBuff[80];
+    unsigned char EncBuff[128];
     // unsigned char DecBuff[80];
     // int intkey[10];
     // for (int i = 0; i < 10; i++) {
@@ -39,7 +40,7 @@ JNIEXPORT jintArray JNICALL Java_Client_Enc(JNIEnv *env, jobject jobj, jintArray
     printState_AES(tmp);
 
     // Enc(tmp, intkey);
-    AES_ECB_Encrypt(tmp, key, EncBuff, 16);
+    AES_ECB_Encrypt(tmp, key, EncBuff, 128);
     printf("[암호화(hex)] \n");
     // printState(tmp);
     printState_AES(EncBuff);
@@ -62,7 +63,8 @@ JNIEXPORT jintArray JNICALL Java_Client_Dec(JNIEnv *env, jobject jobj, jintArray
     jint *byteBuf;
     int size, i;
     jintArray out;
-    unsigned char DecBuff[80];
+    // unsigned char DecBuff[80];
+    unsigned char DecBuff[128];
     // char key[] = "mykeymykey";
     unsigned char key[] = {0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x16, 0x47, 0x77, 0x11, 0x1e, 0x3c};
     // int intkey[10];
@@ -81,7 +83,7 @@ JNIEXPORT jintArray JNICALL Java_Client_Dec(JNIEnv *env, jobject jobj, jintArray
         // printf("%d ", tmp[i]);
     }
     // Dec(tmp, intkey);
-    AES_ECB_Decrypt(tmp, key, DecBuff, 16);
+    AES_ECB_Decrypt(tmp, key, DecBuff, 128);
     printf("[복호화(hex)]\n");
     // printState(tmp);
     printState_AES(DecBuff);
