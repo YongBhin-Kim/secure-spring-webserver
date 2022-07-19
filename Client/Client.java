@@ -19,6 +19,7 @@ class Client {
     public static void main(String argv[]) throws Exception { 
 
         Socket clientSocket = new Socket("localhost", 10000); // Client 포트 : 10000
+        System.out.println("[client-server connected]\n");
         BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in)); // 입력값 받기
         int[] PT = stringToInt(inFromUser.readLine());
         Client h = new Client();
@@ -28,14 +29,14 @@ class Client {
             inttoSB.append(String.valueOf(out[i]));         // "val val val val"
             if (i < 127)
                 inttoSB.append(" ");
-        } 
+        }
         String clientSentence = inttoSB.toString();         // "val val val val"
 
         DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream()); 
         outToServer.writeBytes(clientSentence + "\n");      // send encrypted input string to server
 
-        System.out.println("[Client] : Sending an encrypted message to server.");
-        BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream())); 
+        System.out.println("[Client] : Sending an encrypted message to server.\n");
+        BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         String receivedSentence = inFromServer.readLine();  // received encrypted string sentence from server
         String[] CT = receivedSentence.split(" ");   // ["val"] ["val"] ["val"] ["val"]
         int[] CT2 = new int[CT.length];                     
@@ -51,7 +52,7 @@ class Client {
             inttoStr.append((char) out2[i]);                // [char] [char] [char] [char]
         }
         String tmp = inttoStr.toString();                   // "char char char char" 
-        System.out.println("[복호화]\n" + tmp);              
+        System.out.println("[Client] : Decrypted Server message. \n" + tmp);
         clientSocket.close(); 
     } 
 
@@ -63,7 +64,7 @@ class Client {
         // System.loadLibrary("BlockCipher");
 
         // [Windows]
-        // System.load("C:/SpringServer/Client/libBlockCipher.jnilib");
+        // System.load("~SpringWebServer/Client/libBlockCipher.jnilib");
         // ===========================================================================================================================
         
 
@@ -74,8 +75,7 @@ class Client {
         System.loadLibrary("BlockCipher_AES");
 
         // [Windows]
-        // System.load("~WebServer/Client/libBlockCipher_AES.jnilib"); <--- 이 부분 수정 필요 
+        // System.load("~SpringWebServer/Client/libBlockCipher_AES.jnilib"); <--- 이 부분 수정 필요 
         // ===========================================================================================================================
     }
 } 
-
