@@ -328,8 +328,8 @@ static const unsigned char SBoxInvert[256]= {
       InvCipher((unsigned char (*)[4])Output, ExpKey);
     }
   }
-  void printState_AES(unsigned char state[128]) {
-      for(int i=0; i<128; i++) {
+  void printState_AES(unsigned char state[16]) {
+      for(int i=0; i<16; i++) {
           printf("%02X ", state[i]);
       } printf("\n");
   }
