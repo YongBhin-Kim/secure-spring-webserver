@@ -84,7 +84,6 @@ clone한 서버를 사용하려면 몇몇 설정과 명령을 수정해야 하�
 - clone한 폴더/gs-spring-boot-docker/initial/src/main/java/hello/Server.java 파일에서 [Windwos] System.load()의 경로를 자신의 경로에 맞게끔 설정
 <img width="894" alt="image" src="https://user-images.githubusercontent.com/98372474/179656749-465e74df-bf8a-49cc-8c7b-3aa1a1375e95.png">
 
-
 [2. java 클래스파일 생성] <br>
 - 윈도우는 기본 MS949 인코딩을 사용하므로 작업 파일의 인코딩 UTF-8로 수정하여 javac 명령을 사용한다.
 - minGW터미널을 사용하면 아래의 모든 window 명령에서 UTF-8 인코딩을 해줄 필요가 없다.
