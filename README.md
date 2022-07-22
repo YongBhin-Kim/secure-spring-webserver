@@ -27,7 +27,7 @@
 - ver1.2.2 : 
 - - Docker Image(Server) : `docker pull coji68/web-server:1.2.2` (22-07-01 업데이트)
 - ver1.2.3 : 블록암호 AES를 적용한 서버/클라이언트 (최종), 서버/클라이언트 모두 설정 필요
-- - Server/Client : `git clone https://github.com/YongBhin-Kim/SpringWebServer.git` (22-07-16 업데이트)
+- - Server/Client : `git clone https://github.com/YongBhin-Kim/SpringWebServer.git` (22-07-20 업데이트)
 <br><br><br>
 
 
