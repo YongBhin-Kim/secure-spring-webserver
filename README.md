@@ -97,7 +97,6 @@ Windows : `javac Server.java -encoding UTF-8` <br>
 Server.java가 있는 경로(`gs-spring-boot-docker/initial/src/main/java/hello/`)에서 다음 명령어 입력 <br>
 macOS : `javac Server.java -h .` <br>
 Windows : `javac Server.java -h . -encoding UTF-8` <br>
-(예시) : `gcc -I"/c/Program Files/Java/jdk-18/include" -I"/c/Program Files/Java/jdk-18/include/win32" -o libBlockCipher_AES.jnilib -shared hello/Server.c` <br>
 <br>
 
 [4. 라이브러리 컴파일] <br>
@@ -151,8 +150,8 @@ clone한 클라이언트를 사용하려면 몇몇 설정과 명령을 수정해
 [2. java 클래스파일 생성] <br>
 - 윈도우는 기본 MS949 인코딩을 사용하므로 작업 파일의 인코딩 UTF-8로 수정하여 javac 명령을 사용한다.
 
-macOS : javac Client.java <br>
-Windows : javac Client.java -encoding UTF-8 <br>
+macOS : `javac Client.java` <br>
+Windows : `javac Client.java -encoding UTF-8` <br>
 <br>
 
 [3. 헤더 재생성] <br>
@@ -257,10 +256,8 @@ Client.java 파일이 존재하는 폴더 내에서 명령어 입력 <br>
 
 <img width="1439" alt="image" src="https://user-images.githubusercontent.com/98372474/179672189-8e546535-3ab1-4fc1-a6ce-b327937fa0b5.png"> <br>
 
-
-**Here!!!! insert capture**
-<img width="1439" alt="image" src="https://user-images.githubusercontent.com/98372474/179672220-bb396451-28e8-4239-96b9-dc29e624b240.png"> <br>
-
+<img width="1440" alt="image" src="https://user-images.githubusercontent.com/98372474/180362514-198f2166-35e5-403f-ae5b-194d6ed4d6b4.png"> <br>
+<br><br>
 
 
 ------------------------------------------------------------------------------------------------------------------------------
