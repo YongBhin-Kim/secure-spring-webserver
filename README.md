@@ -25,9 +25,9 @@
 - ver1.2.1 : 
 - - Docker Image(Server) 최적화 테스트 단계
 - ver1.2.2 : 
-- - Docker Image(Server) : `docker pull coji68/web-server:1.2.2` (22-07-01 업데이트)
+- - Docker Image(Server) : `docker pull coji68/web-server:1.2.2`
 - ver1.2.3 : 블록암호 AES를 적용한 서버/클라이언트 (최종), 서버/클라이언트 모두 설정 필요
-- - Server/Client : `git clone https://github.com/YongBhin-Kim/SpringWebServer.git` (22-07-20 업데이트)
+- - Server/Client : `git clone https://github.com/YongBhin-Kim/SpringWebServer.git`
 <br><br><br>
 
 
@@ -171,8 +171,7 @@ Windows : `gcc -I"[jdk경로]/include" -I"[jdk경로]/include/win32" -o libBlock
 
 [5. 라이브러리 경로 가져오기] <br>
 macOS : `java -Djava.library.path=. Client` <br>
-(예시) : `$ java -Djava.library.path=/Users/kim-yongbhin/Desktop/Docker/StartDocker2/WebServer/Client/libBlockCipher_AES.jnilib Client` <br>
-<br>
+
 Windows : `java -Djava.library.path=[라이브러리(libBlockCipher.jnilib) 절대경로] Client` <br>
 (예시) : `java -Djava.library.path=/c/Users/user/workspace/SpringWebServer/Client/libBlockCipher_AES.jnilib Client` <br>
 
