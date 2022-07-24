@@ -3,8 +3,8 @@
 ***현재 올라와 있는 버전은 1.2.3(서버/클라이언트 암/복호) 입니다.*** <br>
 ***Ver1.2.2 이전의 서버는 Docker hub에 올라가있습니다.*** <br>
 
-**[Docker image Environment]**
-- Docker image
+**[Environment]**
+- Docker image (Server Ver<=1.2.2)
 - Language : Java, C
 - Framework : Spring Boot(Gradle)
 <br><br>
