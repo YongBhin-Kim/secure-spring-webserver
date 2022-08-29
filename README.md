@@ -30,6 +30,9 @@
 - - Server/Client : `git clone https://github.com/YongBhin-Kim/SpringWebServer.git`
 <br><br><br>
 
+**설명** <br>
+java 암복호화 속도 C JNI TCP Server Client connection <br>
+<br>
 
 <h3>[1. Docker Image 다운 및 실행 방법]</h3> <br>
 
