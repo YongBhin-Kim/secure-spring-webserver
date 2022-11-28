@@ -115,6 +115,7 @@ Windows : `gcc -I"[jdk경로]/include" -I"[jdk경로]/include/win32" -o libBlock
 
 <br>
 
+
 [5. 라이브러리 경로 가져오기] <br>
 `gs-spring-boot-docker/initial/src/main/java` 의 위치에서 아래의 명령어 입력<br>
 macOS : `java -Djava.library.path=[라이브러리(libBlockCipher_AES.jnilib) 절대경로] hello/Server` <br>
